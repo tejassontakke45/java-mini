@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Details</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            font-size: 12pt;
+            border: 1pt solid #D8D9DA;
+        }
+
+        th, td {
+            border: 1pt solid #D8D9DA;
+            padding: 8px;
+            
+        }
+
+        th {
+            background-color: #D6EFED;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Employee Details</h2>
+
+<table id="employeeTable">
+    <thead>
+        <tr>
+            <th>Employee Name</th>
+            <th>Designation</th>
+            <th>Date of Joining</th>
+            <th>Address</th>
+            <th>Salary</th>
+        </tr>
+    </thead>
+    <tbody>
+       
+    </tbody>
+</table>
+
+<script>
+
+    const employees = [
+        { name: 'John Doe', designation: 'Technical Writer', joinDate: '2022-01-01', address: '123 Main St', salary: 60000 },
+        { name: 'Jane Smith', designation: 'Software Engineer', joinDate: '2022-02-15', address: '456 Oak St', salary: 70000 },
+        { name: 'Bob Johnson', designation: 'Technical Writer', joinDate: '2022-03-10', address: '789 Pine St', salary: 55000 },
+        { name: 'Bob ', designation: 'Technical Writer', joinDate: '2022-03-10', address: '789 Pine St', salary: 50000 },
+
+    ];
+
+    const tableBody = document.querySelector('#employeeTable tbody');
+
+    function populateTable() {
+        tableBody.innerHTML = '';
+
+        employees.forEach(employee => {
+            if (employee.designation === 'Technical Writer') {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${employee.name}</td>
+                <td>${employee.designation}</td>
+                <td>${employee.joinDate}</td>
+            `;
+            tableBody.appendChild(row);
+        }
+        });
+    }
+
+    function displayTechnicalWriters() {
+        const technicalWriters = employees.filter(employee => employee.designation === 'Technical Writer');
+        populateTableWithFilteredData(technicalWriters);
+    }
+
+    function displaySalaryBetween5And7LPA() {
+        const filteredEmployees = employees.filter(employee => employee.salary > 500000 && employee.salary < 700000);
+        populateTableWithFilteredData(filteredEmployees);
+    }
+
+    populateTable();
+</script>
+
+</body>
+</html>
